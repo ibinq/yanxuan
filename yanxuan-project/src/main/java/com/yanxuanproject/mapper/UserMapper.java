@@ -13,4 +13,6 @@ public interface UserMapper {
     int checkUsername(String username);
 
     User selectLogin(String username, String md5Password);
+
+    int checkEmail(String str);
 }

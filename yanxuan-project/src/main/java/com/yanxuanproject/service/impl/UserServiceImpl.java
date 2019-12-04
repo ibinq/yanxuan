@@ -22,28 +22,37 @@ public class UserServiceImpl implements UserService {
     public ServerResponse<User> login(String username, String password) {
         int resultCount = userMapper.checkUsername(username);
         if(resultCount == 0 ){
-            return ServerResponse.createByErrorMessage("用户名不存在");
+            return ServerResponse.error("用户名不存在");
         }
 
         String md5Password = MD5Util.MD5EncodeUtf8(password);
         User user  = userMapper.selectLogin(username,md5Password);
         if(user == null){
-            return ServerResponse.createByErrorMessage("密码错误");
+            return ServerResponse.error("密码错误");
         }
 
         user.setPassword(org.apache.commons.lang3.StringUtils.EMPTY);
-        return ServerResponse.createBySuccess("登录成功",user);
+        return ServerResponse.success("登录成功",user);
     }
 
 
 
     @Override
-    public ServerResponse<User> register(User user) {
+    public ServerResponse  register(User user) {
+        int resultUsername = userMapper.checkUsername(user.getUsername());
+        if(resultUsername > 0 ){
+            return ServerResponse.error("用户名已存在");
+        }
+        int resultEmail = userMapper.checkEmail(user.getEmail());
+        if(resultEmail > 0 ){
+            return ServerResponse.error("email已存在");
+        }
         String newpasword = MD5Util.MD5EncodeUtf8(user.getPassword());
          user.setPassword(newpasword);
         if (userMapper.addUser(user)){
-            return ServerResponse.createBySuccess();
+            return ServerResponse.success("注册成功");
         }
-        return ServerResponse.createByError();
+        return ServerResponse.error("注册失败");
     }
+
 }

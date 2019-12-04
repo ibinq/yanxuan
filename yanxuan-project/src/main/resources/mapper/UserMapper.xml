@@ -12,4 +12,7 @@
     <select id="selectLogin" resultType="com.yanxuanproject.bean.User">
         select id,username,email,phone,question,answer,role from yanxuan_user where username=#{username} and password=#{md5Password}
     </select>
+    <select id="checkEmail" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(1) from yanxuan_user where email = #{str}
+    </select>
 </mapper>
