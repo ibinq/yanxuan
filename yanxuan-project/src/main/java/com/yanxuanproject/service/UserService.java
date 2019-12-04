@@ -1,6 +1,7 @@
 package com.yanxuanproject.service;
 
 import com.yanxuanproject.bean.User;
+import com.yanxuanproject.common.ServerResponse;
 
 /**
  * @Author ZhouBing
@@ -8,5 +9,9 @@ import com.yanxuanproject.bean.User;
  * @Version 1.0
  **/
 public interface UserService {
-    void addUser(User user);
+
+     ServerResponse<User> login(String username, String password);
+
+
+    ServerResponse<User> register(User user);
 }

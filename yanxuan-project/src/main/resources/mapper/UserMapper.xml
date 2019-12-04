@@ -6,4 +6,10 @@
         insert into yanxuan_user(username,password,email,phone,question,answer,role,create_time,update_time)
             values (#{username},#{password},#{email},#{phone},#{question},#{answer},#{role},now(),now())
     </insert>
+    <select id="checkUsername" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(1) from yanxuan_user where username = #{username}
+    </select>
+    <select id="selectLogin" resultType="com.yanxuanproject.bean.User">
+        select id,username,email,phone,question,answer,role from yanxuan_user where username=#{username} and password=#{md5Password}
+    </select>
 </mapper>

@@ -9,4 +9,8 @@ import com.yanxuanproject.bean.User;
  **/
 public interface UserMapper {
     boolean addUser(User user);
+
+    int checkUsername(String username);
+
+    User selectLogin(String username, String md5Password);
 }
