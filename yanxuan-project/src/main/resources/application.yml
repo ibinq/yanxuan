@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    username: root
+    password: password
+    url: jdbc:mysql://localhost:3306/yanxuan
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  type-aliases-package: com.yanxuan.bean
+  mapper-locations: classpath:/mapper/**Mapper.xml
