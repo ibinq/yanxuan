@@ -1,7 +1,7 @@
 package com.yanxuanproject.service;
 
 import com.yanxuanproject.bean.User;
-import com.yanxuanproject.common.ServerResponse;
+import com.yanxuanproject.common.Result;
 
 /**
  * @Author ZhouBing
@@ -10,8 +10,8 @@ import com.yanxuanproject.common.ServerResponse;
  **/
 public interface UserService {
 
-     ServerResponse<User> login(String username, String password);
+     Result<User> login(String username, String password);
 
 
-    ServerResponse<User> register(User user);
+    Result<User> register(User user);
 }

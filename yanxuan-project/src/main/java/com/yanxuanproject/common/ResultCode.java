@@ -8,7 +8,7 @@ import lombok.Getter;
  * @Version 1.0
  **/
 @Getter
-public enum  ResponseCode {
+public enum ResultCode {
     SUCCESS(0,"SUCCESS"),
     ERROR(1,"ERROR"),
     NEED_LOGIN(10,"NEED_LOGIN"),
@@ -17,7 +17,7 @@ public enum  ResponseCode {
     private final int code;
     private final String desc;
 
-    ResponseCode(int code,String desc){
+    ResultCode(int code, String desc){
         this.code = code;
         this.desc = desc;
     }

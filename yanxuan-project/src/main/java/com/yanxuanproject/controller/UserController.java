@@ -2,7 +2,7 @@ package com.yanxuanproject.controller;
 
 import com.yanxuanproject.bean.User;
 import com.yanxuanproject.common.Const;
-import com.yanxuanproject.common.ServerResponse;
+import com.yanxuanproject.common.Result;
 import com.yanxuanproject.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +23,17 @@ public class UserController {
 
 
     @PostMapping("login")
-    public ServerResponse login(@Param("username") String username, @Param("password") String password, HttpSession session){
-        ServerResponse<User> response = userService.login(username,password);
-        if(response.isSuccess()){
-            session.setAttribute(Const.CURRENT_USER,response.getData());
+    public Result login(@Param("username") String username, @Param("password") String password, HttpSession session){
+        Result<User> result = userService.login(username,password);
+        if(result.isSuccess()){
+            session.setAttribute(Const.CURRENT_USER,result.getData());
         }
-        return response;
+        return result;
     }
 
     @PostMapping("register")
-    public ServerResponse register(User user){
-        ServerResponse<User> response = userService.register(user);
+    public Result register(User user){
+        Result<User> response = userService.register(user);
         return response;
     }
 
